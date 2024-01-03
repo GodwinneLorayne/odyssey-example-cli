@@ -34,7 +34,11 @@ jobs:
 
       # Run tests
       - name: Run tests
-        run: hatch run tests
+        run: hatch run pytest
+
+      # Run cli help
+      - name: Run CLI help
+        run: hatch run odyssey-example-cli --help
 
       # Build the app
       - name: Build the app
