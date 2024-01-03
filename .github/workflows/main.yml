@@ -1,0 +1,41 @@
+name: Main
+
+# Trigger only when pushing to main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v4
+        with:
+          # Fetches all history for all tags and branches
+          fetch-depth: 0
+          # Fetches all tags
+          fetch-tags: true
+      
+      # Setup Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # Install Hatch
+      - name: Install Hatch
+        run: pip install hatch
+
+      # Install dependencies
+      - name: Create environment
+        run: hatch env create
+
+      # Run tests
+      - name: Run tests
+        run: hatch run tests
+
+      # Build the app
+      - name: Build the app
+        run: hatch build
