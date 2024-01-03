@@ -40,6 +40,10 @@ jobs:
       - name: Run CLI help
         run: hatch run odyssey-example-cli --help
 
+      # Get cli version
+      - name: Get CLI version
+        run: echo "ODYSSEY_VERSION=$(hatch run odyssey-example-cli --version)" >> $GITHUB_ENV
+
       # Build the sdist
       - name: Build the sdist
         run: hatch build --target sdist
@@ -51,3 +55,7 @@ jobs:
       # Build the app
       - name: Build the app
         run: hatch build --target app
+
+      # Run the app
+      - name: Run the app
+        run: ./dist/app/odyssey-example-cli-$ODYSSEY_VERSION
