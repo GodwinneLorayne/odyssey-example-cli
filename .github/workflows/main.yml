@@ -40,6 +40,14 @@ jobs:
       - name: Run CLI help
         run: hatch run odyssey-example-cli --help
 
+      # Build the sdist
+      - name: Build the sdist
+        run: hatch build --target sdist
+
+      # Build the wheel
+      - name: Build the wheel
+        run: hatch build --target wheel
+
       # Build the app
       - name: Build the app
-        run: hatch build
+        run: hatch build --target app

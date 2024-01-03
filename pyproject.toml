@@ -25,7 +25,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "click"
+  "click",
 ]
 
 [project.scripts]
@@ -56,6 +56,10 @@ cov = [
   "test-cov",
   "cov-report",
 ]
+
+[tool.hatch.build.targets.app]
+scripts = ["odyssey-example-cli"]
+pyapp-version = "0.13.0"
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
